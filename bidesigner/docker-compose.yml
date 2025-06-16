@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:17-alpine    
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=bidesigner_user
+      - POSTGRES_PASSWORD=bidesigner_password
+      - POSTGRES_DB=bidesigner_db
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+  api:
+    build: .
+    # Runs with "runserver" and set volumes to local project for StatReloader support.
+    # command: python manage.py runserver 0.0.0.0:8000
+    #volumes:
+    #  - .:/bidesigner/
+    ports:
+      - "8000:8000"
+    #environment:
+    #  - DATABASE_URL=postgresql://bidesigner_user:bidesigner_password@db:5432/bidesigner_db
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+volumes:
+  postgres_data:

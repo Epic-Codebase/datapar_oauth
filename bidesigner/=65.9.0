@@ -1,0 +1,16 @@
+Using version ^65.9.0 for django-allauth
+
+Updating dependencies
+Resolving dependencies...
+
+Package operations: 7 installs, 0 updates, 0 removals
+
+  - Installing asgiref (3.8.1)
+  - Installing oauthlib (3.2.2)
+  - Installing sqlparse (0.5.3)
+  - Installing django (5.2.3)
+  - Installing pyjwt (2.10.1)
+  - Installing requests-oauthlib (2.0.0)
+  - Installing django-allauth (65.9.0)
+
+Writing lock file
